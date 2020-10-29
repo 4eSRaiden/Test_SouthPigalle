@@ -1,0 +1,83 @@
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+*{
+    box-sizing: border-box;
+    margin:0;
+}
+.globalContainer{
+    display: flex;
+    width:100vw;
+}
+.leftcontainer {
+    width: 40%;
+    background-image: url('https://i.imgur.com/0cpkuOC.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+}
+
+.rightcontainer {
+    width: 60%;
+
+}
+.title{
+    text-align: center;
+    margin-top:20vh;
+    margin-bottom:30px;
+}
+.title h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+.title h2{
+    font-size: 18px;
+    font-weight: 100;
+}
+.input{
+    display: flex;
+    justify-content: center;
+}
+input{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    border: solid 1px rgb(204, 204, 204);
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.input-text{
+    margin-top:10px;
+}
+.dropdown-button{
+    background-color: white !important;
+    color: gray !important;
+    border: 1px solid rgb(204, 204, 204)!important;
+    margin-top:20px;
+    margin-right:20px;
+    margin-bottom:40px;
+}
+form{
+    width:90%;
+    max-width: 400px;
+}
+
+input:focus{
+    outline:0;
+}
+
+.login{
+    background-color:#458ce4;
+    color: white;
+    border:none;
+    padding: 5px 20px 5px 20px;
+    border-radius: 15px;
+    margin-top:30px;
+
+}
+
+button:hover {
+  opacity: 0.8;
+
+}
