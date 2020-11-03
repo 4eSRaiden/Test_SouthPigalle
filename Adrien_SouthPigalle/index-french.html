@@ -14,10 +14,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"
     ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -29,12 +26,13 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"
+    ></script>
     <title>Login Page</title>
   </head>
 
   <body>
-    <div class="globalContainer">
+    <div class="globalContainer" id="app">
       <div class="leftcontainer"></div>
       <div class="rightcontainer">
         <div class="d-flex w-100 justify-content-end">
@@ -51,28 +49,28 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="index.html">English</a>
-              <a class="dropdown-item" href="index french.html">French</a>
+              <a class="dropdown-item" href="index-french.html">French</a>
             </div>
           </div>
         </div>
+
         <div>
           <div class="title">
-            <h1>Bienvenue au Genius Backoffice</h1>
+            <h1>Bienvenue dans le Genius Backoffice</h1>
             <h2>
-              Donnez du pouvoir à votre équipe en créant des contenus pertinents
-              et inspirants!
+              Donnez du pouvoir à votre équipe en créant des contenus pertinents et inspirants!
             </h2>
           </div>
         </div>
         <div class="form w-100 d-flex justify-content-center">
-          <form>
+          <form @submit="redirect">
             <div class="w-100 d-flex justify-content-center">
               <input
                 type="text"
                 name="Email"
                 placeholder="Email"
                 required
-                onkeyup="checkmail(this)"
+                @keyup="checkmail"
                 class="input-text"
               />
             </div>
@@ -83,21 +81,21 @@
                 name="pass"
                 placeholder="Mot de passe"
                 required
-                onkeyup="checkpass(this)"
+                @keyup="checkpass"
               />
             </div>
             <div class="w-100 d-flex justify-content-end">
-              <a href="http://endless.horse/">Mot de passe oublié ? </a>
+              <a href="http://endless.horse/"> Mot de passe oublié ? </a>
             </div>
             <div class="w-100 d-flex justify-content-center">
               <button
                 class="login"
                 name="login"
                 type="submit"
-                disabled
+                :disabled= "!passwordcheck||!emailcheck"
                 id="sub"
               >
-                Se connecter
+                se connecter
               </button>
             </div>
           </form>
@@ -105,34 +103,30 @@
       </div>
     </div>
     <script>
-      document.forms[0].onsubmit = function () {
-        document.location.href = "https://southpigalle.io/";
-      };
-      var passwordcheck = false;
-      var emailcheck = false;
-      function checkmail(input) {
-        if (input.value != "") {
-          emailcheck = true;
-          checkinputs();
-        }
-      }
+      var vm = new Vue ({
+        el: "#app",
+        data: {
+          passwordcheck: false, emailcheck: false,
+        },
+        methods: {      
+          checkmail(input) {
+            if (input.target.value != "") {
+            this.emailcheck = true;
+            }
+          },
 
-      function checkpass(input) {
-        if (input.value != "") {
-          passwordcheck = true;
-          checkinputs();
+          checkpass(input) {
+            if (input.target.value != "") {
+            this.passwordcheck = true;
+            }
+          },
+          redirect(event) {
+            event.preventDefault();
+            document.location.href = "https://southpigalle.io/";
+            return false
+          }
         }
-      }
-
-      function checkinputs() {
-        var button = document.getElementById("sub");
-        if (passwordcheck && emailcheck) {
-          button.disabled = false;
-        } else {
-          button.disabled = true;
-        }
-      }
-
+      })
     </script>
   </body>
 </html>
